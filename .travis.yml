@@ -10,4 +10,4 @@ before_script:
   - travis_key SSH_KEY_FOR_SIGNING cosign.key  # cosign requires the key to be in a file
 
 script: 
-  - cosign sign --key cosign.key [whatever_the_image_identifier_is]
+  - cosign sign-blob --key cosign.key demo.sh
