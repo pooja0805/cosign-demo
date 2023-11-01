@@ -14,6 +14,6 @@ before_script:
 script: 
   - apt-get install -y wget 
   - wget https://github.com/sigstore/cosign/releases/download/v2.2.0/cosign_2.2.0_ppc64el.deb
-  - dpkg -i cosign_2.2.0_ppc64el.deb
+  - sudo dpkg -i cosign_2.2.0_ppc64el.deb
   - cosign version
   - cosign sign-blob --key cosign.key demo.sh
