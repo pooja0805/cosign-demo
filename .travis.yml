@@ -17,5 +17,7 @@ script:
   - sudo dpkg -i cosign_2.2.0_amd64.deb
   - #Clean Up
   - sudo rm -rf cosign.*
-  - cosign version && cosign generate-key-pair
-  - cosign sign-blob --key cosign.key demo.sh
+  - cosign version && cosign generate-key-pair 
+  - echo y | cosign sign-blob --key cosign.key demo.sh > sign.txt # Signing the demo.sh
+  - SIGN=$(cat sign.txt)
+  - cosign verify-blob --key cosign.pub --signature $SIGN demo.sh # Verifying the Signature of demo.sh
