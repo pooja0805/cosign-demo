@@ -22,5 +22,3 @@ script:
   - echo y | cosign sign-blob --key cosign.key demo.sh > sign.txt # Signing the demo.sh
   - SIGN=$(cat sign.txt)
   - cosign verify-blob --key cosign.pub --signature $SIGN demo.sh # Verifying the Signature of demo.sh
-  - # Clean Up Cosign
-  - sudo dpkg -r cosign_2.2.0_ppc64el.deb
