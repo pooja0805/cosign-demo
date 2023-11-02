@@ -15,5 +15,7 @@ before_script:
 script: 
   - wget -q https://github.com/sigstore/cosign/releases/download/v2.2.0/cosign_2.2.0_amd64.deb && ls
   - sudo dpkg -i cosign_2.2.0_amd64.deb
+  - #Clean Up
+  - sudo rm -rf cosign.*
   - cosign version && cosign generate-key-pair
   - cosign sign-blob --key cosign.key demo.sh
