@@ -23,4 +23,4 @@ script:
   - SIGN=$(cat sign.txt)
   - cosign verify-blob --key cosign.pub --signature $SIGN demo.sh # Verifying the Signature of demo.sh
   - # Clean Up Cosign
-  - sudo dpkg -r cosign_2.2.0_*
+  - sudo dpkg -r cosign_2.2.0_ppc64el.deb
