@@ -27,5 +27,5 @@ script:
   - cosign verify-blob --key cosign.pub --signature $SIGN demo.sh # Verifying the Signature of demo.sh
   - # Signing Images
   - docker login -u $USERNAME -p $PASSWORD
-  - echo y | cosign sign --key cosign.key $USERNAME/mynginx:latest #Signing the image
-  - cosign verify --key cosign.pub $USERNAME/mynginx:latest # Verifying the signature of the image
+  - echo y | cosign sign --key cosign.key pooh0805/mynginx:latest #Signing the image
+  - cosign verify --key cosign.pub pooh0805/mynginx:latest # Verifying the signature of the image
