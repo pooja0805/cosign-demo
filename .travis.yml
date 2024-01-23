@@ -19,7 +19,8 @@ env:
 script: 
   - sudo apt-get update && sudo apt-get install -y curl python3-dev
   - wget -O docker-compose https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-ppc64le
-  - sudo mv ./docker-compose /usr/bin/docker-compose
+  - sudo cp docker-compose /usr/bin/docker-compose
+  - sudo chmod +x /usr/bin/docker-compose
   - ls /usr/bin/ | grep docker
   - git clone https://github.com/quay/clair.git && cd clair && git checkout v4.7.2 && docker-compose up
   - #Install Clairctl
