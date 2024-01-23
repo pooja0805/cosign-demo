@@ -17,13 +17,15 @@ env:
 #   - travis_key SSH_KEY_FOR_SIGNING cosign.key  # cosign requires the key to be in a file
   
 script: 
-  - curl -SL https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-ppc64le -o /usr/bin/docker-compose
+  - sudo apt-get update && sudo apt-get install -y curl python3.8-devel 
+  - wget -O docker-compose https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-ppc64le
+  - sudo mv docker-compose /usr/bin/docker-compose
   - git clone https://github.com/quay/clair.git && cd clair && git checkout v4.7.2
-  - docker-compose up -d
+  - docker-compose up
   - #Install Clairctl
   - wget https://github.com/quay/clair/releases/download/v4.6.1/clairctl-linux-ppc64le
   - wget https://raw.githubusercontent.com/quay/clair/main/local-dev/clair/config.yaml
-  - cp clairctl-linux-ppc64le /usr/bin/clairctl
-  - chmod +x /usr/bin/clairctl
+  - sudo cp clairctl-linux-ppc64le /usr/bin/clairctl
+  - sudo chmod +x /usr/bin/clairctl
   - clairctl -c ./config.yaml report --host "http://localhost:6060/" -o json nginx:latest > clair-results.json
   - cat clair-results.json
