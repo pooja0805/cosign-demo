@@ -17,7 +17,7 @@ env:
 #   - travis_key SSH_KEY_FOR_SIGNING cosign.key  # cosign requires the key to be in a file
   
 script: 
-  - sudo apt-get update && sudo apt-get install -y curl python3.8-devel 
+  - sudo apt-get update && sudo apt-get install -y curl python3-devel 
   - wget -O docker-compose https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-ppc64le
   - sudo mv docker-compose /usr/bin/docker-compose
   - git clone https://github.com/quay/clair.git && cd clair && git checkout v4.7.2
