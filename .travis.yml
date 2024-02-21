@@ -17,17 +17,17 @@ env:
 #   - travis_key SSH_KEY_FOR_SIGNING cosign.key  # cosign requires the key to be in a file
   
 script: 
-  - sudo apt-get update && sudo apt-get install -y curl python3-dev
+  - sudo apt-get update && sudo apt-get install -y curl python3-dev python3.6 python3.6-dev python3.6-pip python3.6-cffi python3.6-lxml
   - wget -O docker-compose https://github.com/docker/compose/releases/download/v2.24.2/docker-compose-linux-ppc64le
   - sudo cp docker-compose /usr/bin/docker-compose
   - sudo chmod +x /usr/bin/docker-compose
   - ls /usr/bin/ | grep docker
-  - git clone https://github.com/quay/clair.git && cd clair && git checkout v4.7.2 && docker-compose up
+  - git clone https://github.com/quay/clair.git && cd clair && git checkout v4.7.2 && sudo docker-compose up -d
   - #Install Clairctl
-  - wget https://github.com/quay/clair/releases/download/v4.6.1/clairctl-linux-ppc64le
+  - wget https://github.com/quay/clair/releases/download/v4.7.2/clairctl-linux-ppc64le
   - wget https://raw.githubusercontent.com/quay/clair/main/local-dev/clair/config.yaml
   - sudo cp clairctl-linux-ppc64le /usr/bin/clairctl
   - sudo chmod +x /usr/bin/clairctl
   - ls /usr/bin/ | grep clair
-  - clairctl -c ./config.yaml report --host "http://localhost:6060/" -o json nginx:latest > clair-results.json
+  - sudo clairctl -c ./config.yaml report --host "http://localhost:6060/" -o json nginx:latest > clair-results.json
   - cat clair-results.json
