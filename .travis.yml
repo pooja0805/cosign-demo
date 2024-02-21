@@ -19,6 +19,7 @@ script:
   # - sudo cp docker-compose /usr/bin/docker-compose
   # - sudo chmod +x /usr/bin/docker-compose
   # - ls /usr/bin/ | grep docker
+  - sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
   - export DOCKER_VERSION=24.0.7
   - export CONTAINERD_VERSION=1.6.27
   - export COMPOSE_VERSION=2.20.2
