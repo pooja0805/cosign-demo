@@ -27,8 +27,8 @@ script:
   - source /etc/os-release
   - echo $UBUNTU_CODENAME
   - echo $VERSION_ID
-  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/containerd.io_${CONTAINERD_VERSION}-1_ppc64el.deb && \
-    wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb && \
+  # - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/containerd.io_${CONTAINERD_VERSION}-1_ppc64el.deb && \
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb && \
     wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce-cli_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb && \
     wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce-rootless-extras_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb && \
     wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-compose-plugin_${COMPOSE_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb && \
