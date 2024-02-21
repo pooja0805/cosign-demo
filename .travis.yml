@@ -19,13 +19,22 @@ script:
   # - sudo cp docker-compose /usr/bin/docker-compose
   # - sudo chmod +x /usr/bin/docker-compose
   # - ls /usr/bin/ | grep docker
-  - DOCKER_VERSION=24.0.9
-  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=ppc64el signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
-    sudo apt-get update -y && \
-    sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-buildx-plugin
+  - export DOCKER_VERSION=24.0.7
+  - export CONTAINERD_VERSION=1.6.27
+  - export COMPOSE_VERSION=2.20.2
+  - export BUILDX_PLUGIN_VERSION=0.11.2
+  - source /etc/os-release
+  - echo $UBUNTU_CODENAME
+  - echo $VERSION_ID
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/containerd.io_${CONTAINERD_VERSION}-1_ppc64el.deb
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce-cli_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-ce-rootless-extras_${DOCKER_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-compose-plugin_${COMPOSE_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb
+  - wget https://download.docker.com/linux/ubuntu/dists/${UBUNTU_CODENAME}/pool/stable/ppc64el/docker-buildx-plugin_${BUILDX_PLUGIN_VERSION}-1~ubuntu.${VERSION_ID}~${UBUNTU_CODENAME}_ppc64el.deb
+  - sudo dpkg -i *.deb
   - sudo dockerd & 
-  - sleep 60
+  - sleep 30
   - sudo docker version | grep $DOCKER_VERSION 
   - sudo usermod -aG docker $USER
   - docker ps -a
